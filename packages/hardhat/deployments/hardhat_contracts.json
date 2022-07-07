@@ -1,85 +1,4 @@
 {
-  "4": {
-    "rinkeby": {
-      "name": "rinkeby",
-      "chainId": "4",
-      "contracts": {
-        "Greeter": {
-          "address": "0x971f1E92DdCf8EbaF9f2Ed83bfEe87e3E2816B81",
-          "abi": [
-            {
-              "inputs": [
-                {
-                  "internalType": "string",
-                  "name": "_greet",
-                  "type": "string"
-                }
-              ],
-              "stateMutability": "nonpayable",
-              "type": "constructor"
-            },
-            {
-              "inputs": [],
-              "name": "greet",
-              "outputs": [
-                {
-                  "internalType": "string",
-                  "name": "",
-                  "type": "string"
-                }
-              ],
-              "stateMutability": "view",
-              "type": "function"
-            },
-            {
-              "inputs": [
-                {
-                  "internalType": "string",
-                  "name": "_greeting",
-                  "type": "string"
-                }
-              ],
-              "name": "setGreeting",
-              "outputs": [],
-              "stateMutability": "nonpayable",
-              "type": "function"
-            }
-          ]
-        },
-        "Storage": {
-          "address": "0x7Ae4DF8850b1a05b47F40a37EC8AA3374464644C",
-          "abi": [
-            {
-              "inputs": [],
-              "name": "retrieve",
-              "outputs": [
-                {
-                  "internalType": "uint256",
-                  "name": "",
-                  "type": "uint256"
-                }
-              ],
-              "stateMutability": "view",
-              "type": "function"
-            },
-            {
-              "inputs": [
-                {
-                  "internalType": "uint256",
-                  "name": "num",
-                  "type": "uint256"
-                }
-              ],
-              "name": "store",
-              "outputs": [],
-              "stateMutability": "nonpayable",
-              "type": "function"
-            }
-          ]
-        }
-      }
-    }
-  },
   "1337": {
     "localhost": {
       "name": "localhost",
@@ -354,6 +273,238 @@
               "name": "store",
               "outputs": [],
               "stateMutability": "nonpayable",
+              "type": "function"
+            }
+          ]
+        },
+        "NewsFeed": {
+          "address": "0x6Dd91fE767E24E23AA5F2e17d97e8C001e38967A",
+          "abi": [
+            {
+              "inputs": [],
+              "stateMutability": "nonpayable",
+              "type": "constructor"
+            },
+            {
+              "anonymous": false,
+              "inputs": [
+                {
+                  "indexed": false,
+                  "internalType": "uint256",
+                  "name": "id",
+                  "type": "uint256"
+                },
+                {
+                  "indexed": false,
+                  "internalType": "string",
+                  "name": "title",
+                  "type": "string"
+                },
+                {
+                  "indexed": false,
+                  "internalType": "string",
+                  "name": "description",
+                  "type": "string"
+                },
+                {
+                  "indexed": false,
+                  "internalType": "string",
+                  "name": "location",
+                  "type": "string"
+                },
+                {
+                  "indexed": false,
+                  "internalType": "string",
+                  "name": "category",
+                  "type": "string"
+                },
+                {
+                  "indexed": false,
+                  "internalType": "string",
+                  "name": "coverImageHash",
+                  "type": "string"
+                },
+                {
+                  "indexed": false,
+                  "internalType": "string",
+                  "name": "date",
+                  "type": "string"
+                },
+                {
+                  "indexed": false,
+                  "internalType": "address",
+                  "name": "author",
+                  "type": "address"
+                }
+              ],
+              "name": "FeedCreated",
+              "type": "event"
+            },
+            {
+              "inputs": [
+                {
+                  "internalType": "string",
+                  "name": "_title",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "_description",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "_location",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "_category",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "_coverImageHash",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "_date",
+                  "type": "string"
+                }
+              ],
+              "name": "createFeed",
+              "outputs": [],
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "inputs": [],
+              "name": "getAllFeeds",
+              "outputs": [
+                {
+                  "components": [
+                    {
+                      "internalType": "uint256",
+                      "name": "id",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "title",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "description",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "location",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "category",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "coverImageHash",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "date",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "address",
+                      "name": "author",
+                      "type": "address"
+                    }
+                  ],
+                  "internalType": "struct NewsFeed.Feed[]",
+                  "name": "",
+                  "type": "tuple[]"
+                }
+              ],
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "inputs": [
+                {
+                  "internalType": "uint256",
+                  "name": "_id",
+                  "type": "uint256"
+                }
+              ],
+              "name": "getFeed",
+              "outputs": [
+                {
+                  "components": [
+                    {
+                      "internalType": "uint256",
+                      "name": "id",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "title",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "description",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "location",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "category",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "coverImageHash",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "string",
+                      "name": "date",
+                      "type": "string"
+                    },
+                    {
+                      "internalType": "address",
+                      "name": "author",
+                      "type": "address"
+                    }
+                  ],
+                  "internalType": "struct NewsFeed.Feed",
+                  "name": "",
+                  "type": "tuple"
+                }
+              ],
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "inputs": [],
+              "name": "getTotalFeeds",
+              "outputs": [
+                {
+                  "internalType": "uint256",
+                  "name": "",
+                  "type": "uint256"
+                }
+              ],
+              "stateMutability": "view",
               "type": "function"
             }
           ]

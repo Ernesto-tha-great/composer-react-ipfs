@@ -6,7 +6,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Chip from "@mui/material/Chip";
-import { useContractKit } from "@celo-tools/use-contractkit";
+import { useCelo } from "@celo/react-celo";
 import { truncateAddress, getWindowDimensions } from "@/utils";
 import { ThemeSwitcher } from "../ThemeSwitcher";
 import { useThemeContext } from "@/contexts/userTheme";
@@ -15,7 +15,7 @@ import { useTheme } from "@mui/material/styles";
 import { Polling } from "@/components";
 
 function AccountDetails() {
-  const { address, network, connect, destroy, kit } = useContractKit();
+  const { address, network, connect, destroy, kit } = useCelo();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
@@ -43,14 +43,13 @@ function AccountDetails() {
         <Button
           color="inherit"
           variant="outlined"
-          onClick={() => connect().catch(e => console.log(e))}
+          onClick={() => connect().catch((e) => console.log(e))}
         >
           Connect wallet
         </Button>
       )}
-
     </>
-  )
+  );
 }
 
 export function Header() {
@@ -69,7 +68,7 @@ export function Header() {
               </Typography>
               <ThemeSwitcher
                 sx={{ m: 1 }}
-                onChange={e => setTheme(e.target.checked)}
+                onChange={(e) => setTheme(e.target.checked)}
                 checked={themeContext}
               />
             </Toolbar>
@@ -77,7 +76,7 @@ export function Header() {
           <AppBar color="primary" sx={{ top: "auto", bottom: 0 }}>
             <Toolbar sx={{ gap: { md: 2, xs: 0.5 } }}>
               <AccountDetails />
-              <Polling/>
+              <Polling />
             </Toolbar>
           </AppBar>
         </>
@@ -90,7 +89,7 @@ export function Header() {
             <AccountDetails />
             <ThemeSwitcher
               sx={{ m: 1 }}
-              onChange={e => setTheme(e.target.checked)}
+              onChange={(e) => setTheme(e.target.checked)}
               checked={themeContext}
             />
           </Toolbar>
