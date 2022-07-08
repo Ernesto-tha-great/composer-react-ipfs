@@ -11,7 +11,7 @@ contract NewsFeed {
   Counters.Counter private _feedIds;
 
   constructor() {
-    console.log("NewsFeed deployed");
+    console.log("Celo NewsFeed deployed");
   }
 
   /*

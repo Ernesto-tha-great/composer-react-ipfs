@@ -1,100 +1,57 @@
-import * as React from "react";
-import { useState, useEffect } from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import Chip from "@mui/material/Chip";
+import Link from "next/link";
 import { useCelo } from "@celo/react-celo";
-import { truncateAddress, getWindowDimensions } from "@/utils";
-import { ThemeSwitcher } from "../ThemeSwitcher";
-import { useThemeContext } from "@/contexts/userTheme";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import { useTheme } from "@mui/material/styles";
-import { Polling } from "@/components";
+import { truncateAddress } from "@/utils";
 
-function AccountDetails() {
+export default function Header({ ToastContainer }) {
   const { address, network, connect, destroy, kit } = useCelo();
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <>
-      {network && <Chip label={network.name} color="secondary" />}
-      {address && (
-        <>
-          <Chip
-            label={truncateAddress(address)}
-            color="info"
-            onDelete={destroy}
-            sx={{ mx: 1 }}
-          />
-          {!isMobile ? (
-            <Button variant="outlined" color="inherit" onClick={destroy}>
-              Disconnect
-            </Button>
-          ) : (
-            ""
-          )}
-        </>
-      )}
-      {!address && (
-        <Button
-          color="inherit"
-          variant="outlined"
-          onClick={() => connect().catch((e) => console.log(e))}
-        >
-          Connect wallet
-        </Button>
-      )}
-    </>
-  );
-}
+    <header className="w-full flex bg-gray-800 justify-between h-20 items-center border-b p-4 border-borderWhiteGray dark:border-borderGray">
+      <div className=" w-1/3">
+        <Link href="/" className="flex items-center">
+          <h1 className="text-2xl font-bold text-white">Home</h1>
+        </Link>
+      </div>
+      <div className=" w-1/3 flex justify-center items-center">
+        <h1 className="text-2xl font-bold text-blue-300 dark:text-blue-300">
+          Newsworthy
+        </h1>
+      </div>
 
-export function Header() {
-  const { theme: themeContext, setTheme } = useThemeContext();
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-
-  return (
-    <Box sx={{ flexGrow: 1 }}>
-      {isMobile ? (
-        <>
-          <AppBar position="static">
-            <Toolbar sx={{ gap: { md: 2, xs: 0.5 } }}>
-              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                Celo Dapp Starter
-              </Typography>
-              <ThemeSwitcher
-                sx={{ m: 1 }}
-                onChange={(e) => setTheme(e.target.checked)}
-                checked={themeContext}
-              />
-            </Toolbar>
-          </AppBar>
-          <AppBar color="primary" sx={{ top: "auto", bottom: 0 }}>
-            <Toolbar sx={{ gap: { md: 2, xs: 0.5 } }}>
-              <AccountDetails />
-              <Polling />
-            </Toolbar>
-          </AppBar>
-        </>
+      {address ? (
+        <div className="w-1/3 flex justify-end items-center">
+          <li className="bg-green-100 py-1 px-4 mx-4 rounded-full cursor-pointer hover:bg-green-200">
+            <h4 className="font-medium self-center -mt-6 px-3">
+              {truncateAddress(address)}
+            </h4>
+          </li>
+          <Link href="/UploadPage">
+            <button className="items-center bg-green-600 rounded-lg font-medium p-1  color-blue-500 hover:bg-green-500 focus:outline-none focus:shadow-outline text-white">
+              <span className="">Create a New Feed</span>
+            </button>
+          </Link>
+        </div>
       ) : (
-        <AppBar position="static">
-          <Toolbar sx={{ gap: { md: 2, xs: 0.5 } }}>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              Celo Dapp Starter
-            </Typography>
-            <AccountDetails />
-            <ThemeSwitcher
-              sx={{ m: 1 }}
-              onChange={(e) => setTheme(e.target.checked)}
-              checked={themeContext}
-            />
-          </Toolbar>
-        </AppBar>
+        <div className=" w-1/3 flex justify-end">
+          <button
+            className="items-center bg-green-600 rounded-md font-medium p-3 shadow-lg color-blue-500 hover:bg-green-500 focus:outline-none focus:shadow-outline text-white"
+            onClick={() => connect().catch((e) => console.log(e))}
+          >
+            <span className="">Connect your wallet</span>
+          </button>
+        </div>
       )}
-    </Box>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+    </header>
   );
 }

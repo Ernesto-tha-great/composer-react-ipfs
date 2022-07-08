@@ -8,7 +8,7 @@ import Link from "next/link";
 import { success, error, warn } from "../utils/response";
 
 import "react-toastify/dist/ReactToastify.css";
-import { Header } from "@/components/Header";
+import { Headers } from "@/components/Header";
 
 export default function HomePage({ contractData }) {
   const { address, connect, kit } = useCelo();
@@ -29,12 +29,11 @@ export default function HomePage({ contractData }) {
     try {
       setLoading(true);
       const AllFeeds = await contract.methods.getAllFeeds().call();
-      console.log("all feeds", AllFeeds);
       /*
        * We only need title, category, coverImageHash, and author
        * pick those out
        */
-      const formattedFeed = AllFeeds.map((feed) => {
+      const formattedFeed = AllFeeds.map((feed: any) => {
         return {
           id: feed.id,
           title: feed.title,
@@ -82,32 +81,23 @@ export default function HomePage({ contractData }) {
         },
       ]);
     };
-
-    // if (address) {
-    //   contract.on("FeedCreated", onFeedCreated);
-    // }
-
-    // return () => {
-    //   if (contract) {
-    //     contract.off("FeedCreated", onFeedCreated);
-    //   }
-    // };
   }, []);
 
   return (
     <div className="w-full  flex flex-row">
       <div className="flex-1 flex flex-col">
-        <Header ToastContainer={ToastContainer} />
-        <div className="flex-1 flex flex-row flex-wrap">
-          {feeds?.map((feed, index) => {
-            return (
-              <Link href={`/feed?id=${feed.id}`} key={index}>
-                <div className="w-80 h-80 m-2">
-                  <FeedList feed={feed} />
-                </div>
-              </Link>
-            );
-          })}
+        <div className="flex-1 flex flex-row flex-wrap mt-8">
+          {feeds
+            ?.map((feed, index) => {
+              return (
+                <Link href={`/FeedPage?id=${feed.id}`} key={index}>
+                  <div className="w-80 h-80 m-2">
+                    <FeedList feed={feed} />
+                  </div>
+                </Link>
+              );
+            })
+            .reverse()}
           {loading && (
             <div className="flex-1 flex flex-row flex-wrap">
               {Array(loadingArray)

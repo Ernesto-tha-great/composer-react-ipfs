@@ -6,22 +6,24 @@ import {
   AiFillRedditCircle,
 } from "react-icons/ai";
 
-export default function Feed({ feed }) {
+export default function FeedsPage({ feed }) {
   return (
-    <div>
+    <div className="px-8 rounded-xl py-4 shadow-xl">
       <img
-        className=" rounded-lg w-full bg-contain h-80"
+        className=" rounded-md w-full self-center bg-contain h-80"
         src={`https://ipfs.infura.io/ipfs/${feed.coverImageHash}`}
         alt="cover"
       />
-      <div className="flex justify-between flex-row py-4 border-borderWhiteGray dark:border-borderGray border-b-2">
+      <div className="flex  justify-between flex-row py-4 border-borderWhiteGray dark:border-borderGray border-b-2">
         <div>
-          <h3 className="text-2xl dark:text-white">{feed.title}</h3>
-          <p className="text-gray-500 mt-4">
+          <h3 className="text-2xl font-semibold dark:text-gray-600">
+            {feed.title}
+          </h3>
+          <p className="text-gray-600 font-semibold mt-4">
             {feed.category} • {feed.date}
           </p>
         </div>
-        <div className="flex flex-row items-center">
+        <div className="flex flex-row items-center mx-4 -mt-4">
           <a
             className="bg-transparent dark:text-[#9CA3AF] py-2 px-6 border rounded-lg border-blue-600 mr-6 text-blue-600 hover:bg-blue-600 hover:text-white"
             href={`https://twitter.com/intent/tweet?text=${feed.title}&url=https://ipfs.infura.io/ipfs/${feed.coverImageHash}`}
@@ -50,12 +52,14 @@ export default function Feed({ feed }) {
       </div>
 
       <div className="flex mt-5 flex-row items-center ">
-        <div className="flex items-center text-textSubTitle mt-1">
+        <div className="flex items-center font-semibold text-textSubTitle mt-1">
           Author: {feed?.author?.slice(0, 12)}...
           <BiCheck size="20px" color="green" className="ml-1" />
         </div>
       </div>
-      <p className="text-sm text-black mt-4">{feed.description}</p>
+      <p className="text-lg font-medium text-gray-600 mt-4">
+        {feed.description}
+      </p>
     </div>
   );
 }

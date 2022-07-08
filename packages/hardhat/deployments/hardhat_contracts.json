@@ -227,58 +227,8 @@
             }
           ]
         },
-        "Storage": {
-          "address": "0x5ba3ec4808A655381452f4b58C929e4200B4DF69",
-          "abi": [
-            {
-              "anonymous": false,
-              "inputs": [
-                {
-                  "indexed": false,
-                  "internalType": "uint256",
-                  "name": "number",
-                  "type": "uint256"
-                },
-                {
-                  "indexed": false,
-                  "internalType": "address",
-                  "name": "sender",
-                  "type": "address"
-                }
-              ],
-              "name": "newNumber",
-              "type": "event"
-            },
-            {
-              "inputs": [],
-              "name": "retrieve",
-              "outputs": [
-                {
-                  "internalType": "uint256",
-                  "name": "",
-                  "type": "uint256"
-                }
-              ],
-              "stateMutability": "view",
-              "type": "function"
-            },
-            {
-              "inputs": [
-                {
-                  "internalType": "uint256",
-                  "name": "num",
-                  "type": "uint256"
-                }
-              ],
-              "name": "store",
-              "outputs": [],
-              "stateMutability": "nonpayable",
-              "type": "function"
-            }
-          ]
-        },
         "NewsFeed": {
-          "address": "0x6Dd91fE767E24E23AA5F2e17d97e8C001e38967A",
+          "address": "0x4A63635Dc82F6fC9D93E353f1fF9f13FE79bA32b",
           "abi": [
             {
               "inputs": [],
@@ -505,6 +455,56 @@
                 }
               ],
               "stateMutability": "view",
+              "type": "function"
+            }
+          ]
+        },
+        "Storage": {
+          "address": "0x5ba3ec4808A655381452f4b58C929e4200B4DF69",
+          "abi": [
+            {
+              "anonymous": false,
+              "inputs": [
+                {
+                  "indexed": false,
+                  "internalType": "uint256",
+                  "name": "number",
+                  "type": "uint256"
+                },
+                {
+                  "indexed": false,
+                  "internalType": "address",
+                  "name": "sender",
+                  "type": "address"
+                }
+              ],
+              "name": "newNumber",
+              "type": "event"
+            },
+            {
+              "inputs": [],
+              "name": "retrieve",
+              "outputs": [
+                {
+                  "internalType": "uint256",
+                  "name": "",
+                  "type": "uint256"
+                }
+              ],
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "inputs": [
+                {
+                  "internalType": "uint256",
+                  "name": "num",
+                  "type": "uint256"
+                }
+              ],
+              "name": "store",
+              "outputs": [],
+              "stateMutability": "nonpayable",
               "type": "function"
             }
           ]
