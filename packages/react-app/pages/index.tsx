@@ -3,7 +3,6 @@ import deployedContracts from "@celo-progressive-dapp-starter/hardhat/deployment
 import { useCelo } from "@celo/react-celo";
 import AppLayout from "@/components/layout/AppLayout";
 import HomePage from "./HomePage";
-import UploadPage from "./UploadPage";
 
 export default function App() {
   const { network } = useCelo();
@@ -16,7 +15,6 @@ export default function App() {
   return (
     <AppLayout title="Celo Starter" description="Celo Starter">
       <HomePage contractData={contracts?.NewsFeed} />
-      {/* <UploadPage contractData={contracts?.NewsFeed} /> */}
     </AppLayout>
   );
 }

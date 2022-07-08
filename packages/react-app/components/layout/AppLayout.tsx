@@ -12,7 +12,7 @@ interface Props {
 
 export default function AppLayout({ title, description, children }: Props) {
   return (
-    <div className="bg-gray-200 flex-1 h-screen">
+    <div className="bg-gray-200 flex-1 h-full">
       <Header ToastContainer={ToastContainer} />
       <Meta title={title} description={description} />
       {children}

@@ -4,11 +4,10 @@ import { NewsFeed } from "@celo-progressive-dapp-starter/hardhat/types/NewsFeed"
 import deployedContracts from "@celo-progressive-dapp-starter/hardhat/deployments/hardhat_contracts.json";
 import Link from "next/link";
 import FeedList from "../components/FeedList";
-import Feed from "./FeedsPage";
-import { from } from "@apollo/client";
+import Feed from "../components/Feed";
 
 export default function FeedPage() {
-  const { address, network, kit } = useCelo();
+  const { network, kit } = useCelo();
   const [relatedFeeds, setRelatedFeeds] = useState([]);
 
   // state variable to store the current feed
@@ -19,7 +18,7 @@ export default function FeedPage() {
       network?.name?.toLocaleLowerCase()
     ]?.contracts;
 
-  let contractData = contractDataS.NewsFeed;
+  const contractData = contractDataS.NewsFeed;
 
   const contract = contractData
     ? (new kit.connection.web3.eth.Contract(
@@ -46,14 +45,8 @@ export default function FeedPage() {
   const getFeed = async () => {
     try {
       let feedId = getUrlValue()["id"];
-      console.log("feedid", typeof feedId);
       const allFeed = await contract.methods.getAllFeeds().call();
-      // console.log(
-      //   "contract data",
-      //   await contract.methods.getFeed(feedId).send({ from: address })
-      // );
       const singleFeed: any = allFeed.filter((feed: any) => feed.id === feedId);
-      console.log("single feed", singleFeed[0].title);
 
       // Format feed
       const formattedFeed = {
@@ -68,7 +61,6 @@ export default function FeedPage() {
       };
 
       setFeed(formattedFeed);
-      console.log("feescjkfkvgld", feed);
     } catch (error) {
       console.log(error);
     }
@@ -125,7 +117,7 @@ export default function FeedPage() {
   }, []);
 
   return (
-    <div className="w-full bg-gray-200 h-screen flex flex-row">
+    <div className="w-full bg-gray-200 h-full flex flex-row">
       <Link href="/">
         <button className="bg-red-600 hover:bg-red-800 text-white w-20 h-20 mt-10 justify-right font-bold px-2 rounded ml-10">
           Go Back

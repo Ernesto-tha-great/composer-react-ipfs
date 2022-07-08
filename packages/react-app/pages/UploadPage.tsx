@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { useCelo } from "@celo/react-celo";
 import { NewsFeed } from "@celo-progressive-dapp-starter/hardhat/types/NewsFeed";
 import deployedContracts from "@celo-progressive-dapp-starter/hardhat/deployments/hardhat_contracts.json";
@@ -10,7 +10,7 @@ import { success, error, defaultToast } from "../utils/response";
 import { ImportCandidate } from "ipfs-core-types/dist/src/utils";
 
 export default function Upload() {
-  const { address, connect, kit } = useCelo();
+  const { address, kit } = useCelo();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");

@@ -1,17 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useCelo } from "@celo/react-celo";
 import { NewsFeed } from "@celo-progressive-dapp-starter/hardhat/types/NewsFeed";
-import { ToastContainer } from "react-toastify";
 import FeedList from "../components/FeedList";
 import Link from "next/link";
-
-import { success, error, warn } from "../utils/response";
-
+import { error } from "../utils/response";
 import "react-toastify/dist/ReactToastify.css";
-import { Headers } from "@/components/Header";
 
 export default function HomePage({ contractData }) {
-  const { address, connect, kit } = useCelo();
+  const { kit } = useCelo();
   const [loading, setLoading] = useState(false);
   const [loadingArray] = useState(15);
 
@@ -56,31 +52,6 @@ export default function HomePage({ contractData }) {
    */
   useEffect(() => {
     getFeeds();
-
-    const onFeedCreated = async (
-      id,
-      title,
-      description,
-      location,
-      category,
-      coverImageHash,
-      date,
-      author
-    ) => {
-      setFeeds((prevState) => [
-        ...prevState,
-        {
-          id,
-          title,
-          description,
-          location,
-          category,
-          coverImageHash,
-          date,
-          author,
-        },
-      ]);
-    };
   }, []);
 
   return (
